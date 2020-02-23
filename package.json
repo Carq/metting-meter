@@ -1,7 +1,17 @@
 {
-  "name": "real-time-metting-cost",
+  "name": "meeting-meter",
   "version": "0.1.0",
-  "private": true,
+  "license": "GPL-3.0",
+  "homepage": "https://carq.github.io/metting-meter",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "dependencies": {
     "@material-ui/core": "^4.9.4",
     "node-sass": "^4.13.1",
@@ -11,14 +21,8 @@
     "react-scripts": "3.4.0",
     "typeface-roboto": "0.0.75"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   },
   "browserslist": {
     "production": [
