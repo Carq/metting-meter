@@ -1,0 +1,13 @@
+import React from "react";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+
+const Header = () => (
+  <Box>
+    <Typography variant="h2" align="center">
+      Meeting Meter
+    </Typography>
+  </Box>
+);
+
+export default Header;
