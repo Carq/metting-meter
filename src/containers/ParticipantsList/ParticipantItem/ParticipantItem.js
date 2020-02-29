@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 
 import TextField from "@material-ui/core/TextField";
 
-class ProffessionSingleItem extends Component {
+class ParticipantItem extends Component {
   nameChanged = e => {
     const { id, hourlyRate, count } = this.props;
 
@@ -44,7 +44,7 @@ class ProffessionSingleItem extends Component {
     return (
       <Box mx="auto">
         <TextField
-          label="Proffession Name"
+          label="Participant Name"
           value={name}
           onChange={this.nameChanged}
           style={{ margin: "4px", width: "160px" }}
@@ -68,8 +68,8 @@ class ProffessionSingleItem extends Component {
   }
 }
 
-ProffessionSingleItem.propTypes = {
+ParticipantItem.propTypes = {
   onChange: PropTypes.func
 };
 
-export default ProffessionSingleItem;
+export default ParticipantItem;

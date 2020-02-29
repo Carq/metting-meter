@@ -11,6 +11,16 @@ class Stopwatch extends Component {
     isTicking: false
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.startTime && props.startTime !== state.startTime) {
+      return {
+        startTime: props.startTime
+      };
+    }
+
+    return null;
+  }
+
   render() {
     return (
       <Box display="flex" flexDirection="column">
@@ -59,9 +69,12 @@ class Stopwatch extends Component {
   };
 
   resetWacher = () => {
-    this.setState({
-      startTime: new Date()
-    });
+    this.setState(
+      {
+        startTime: new Date()
+      },
+      this.calculateTimePass
+    );
   };
 
   calculateTimePass = () => {
