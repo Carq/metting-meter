@@ -6,19 +6,18 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 class Stopwatch extends Component {
-  state = {
-    startTime: null,
-    isTicking: false
-  };
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.startTime && props.startTime !== state.startTime) {
-      return {
-        startTime: props.startTime
-      };
+  constructor(props) {
+    super(props);
+    if (props.startTime) {
+      const parsedDate = this.parseTime(props.startTime);
+      if (parsedDate) {
+        this.state = {
+          startTime: parsedDate,
+          isTicking: true
+        };
+        this.startInterval();
+      }
     }
-
-    return null;
   }
 
   render() {
@@ -49,11 +48,12 @@ class Stopwatch extends Component {
 
   startWatcher = () => {
     const { isTicking } = this.state;
+
     if (isTicking) {
       return;
     }
 
-    this.watcherInterval = setInterval(this.calculateTimePass, 100);
+    this.startInterval();
 
     this.setState({
       isTicking: true,
@@ -77,18 +77,36 @@ class Stopwatch extends Component {
     );
   };
 
+  startInterval = () => {
+    this.watcherInterval = setInterval(this.calculateTimePass, 100);
+  };
+
+  parseTime = time => {
+    const hour = time.split(":")[0];
+    const minutes = time.split(":")[1];
+    const today = new Date();
+
+    return new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate(),
+      hour,
+      minutes
+    );
+  };
+
   calculateTimePass = () => {
     const { startTime } = this.state;
     const { timeOnChange } = this.props;
 
-    const timePass = new Date() - startTime;
-
+    let timePass = new Date() - startTime;
+    timePass = timePass > 0 ? timePass : 0;
     if (timeOnChange) {
       timeOnChange(timePass);
     }
 
     this.setState({
-      timePass: timePass
+      timePass: timePass > 0 ? timePass : 0
     });
   };
 

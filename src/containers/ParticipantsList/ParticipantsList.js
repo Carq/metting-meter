@@ -9,16 +9,17 @@ class ParticipantsList extends Component {
 
     return (
       <Box display="flex" flexDirection="column" justifyContent="center">
-        {participants.map((item, index) => (
-          <ParticipantItem
-            key={index}
-            id={index}
-            name={item.name}
-            hourlyRate={item.hourlyRate}
-            count={item.count}
-            onChange={changedItem => participantOnChange(changedItem)}
-          />
-        ))}
+        {participants &&
+          participants.map((item, index) => (
+            <ParticipantItem
+              key={index}
+              id={index}
+              name={item.name}
+              hourlyRate={item.hourlyRate}
+              count={item.count}
+              onChange={changedItem => participantOnChange(changedItem)}
+            />
+          ))}
       </Box>
     );
   }
