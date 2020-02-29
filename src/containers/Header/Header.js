@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 
 const Header = () => (
   <Box>
-    <Typography variant="h2" align="center">
+    <Typography variant="h4" align="center" color="primary">
       Meeting Meter
     </Typography>
   </Box>

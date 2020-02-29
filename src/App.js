@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MettingMeter from "./containers/MettingMeter";
+import Footer from "./containers/Footer";
 import history from "./history";
 import { addUrlProps, UrlQueryParamTypes } from "react-url-query";
 
@@ -17,7 +18,13 @@ class App extends Component {
   render() {
     const { startTime, participants } = this.props;
     return (
-      <MettingMeter startTime={startTime} initialParticipants={participants} />
+      <React.Fragment>
+        <MettingMeter
+          startTime={startTime}
+          initialParticipants={participants}
+        />
+        <Footer />
+      </React.Fragment>
     );
   }
 }

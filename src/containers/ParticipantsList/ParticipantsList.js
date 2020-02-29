@@ -8,7 +8,7 @@ class ParticipantsList extends Component {
     const { participants, participantOnChange } = this.props;
 
     return (
-      <Box display="flex" flexDirection="column" justifyContent="center">
+      <Box display="flex" flexDirection="column" justifyContent="center" m={2}>
         {participants &&
           participants.map((item, index) => (
             <ParticipantItem

@@ -47,7 +47,7 @@ class ParticipantItem extends Component {
           label="Participant Name"
           value={name}
           onChange={this.nameChanged}
-          style={{ margin: "4px", width: "160px" }}
+          style={{ margin: "4px", width: "180px" }}
         />
         <TextField
           label="Hourly Rate (€)"

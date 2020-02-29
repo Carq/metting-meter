@@ -17,6 +17,8 @@ class Stopwatch extends Component {
         };
         this.startInterval();
       }
+    } else {
+      this.state = {};
     }
   }
 

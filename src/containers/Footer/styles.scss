@@ -1,0 +1,12 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: small;
+
+  &__quote,
+  .MuiTypography-caption {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+}

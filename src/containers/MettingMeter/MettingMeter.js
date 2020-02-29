@@ -6,6 +6,7 @@ import Header from "../Header";
 import Stopwatcher from "../Stopwatcher";
 import TotalMeetingCost from "../TotalMeetingCost";
 import ParticipantsList from "../ParticipantsList";
+import "./styles.scss";
 
 class MettingMeter extends Component {
   constructor(props) {
@@ -62,21 +63,23 @@ class MettingMeter extends Component {
     const { participants, startTime, timePassInMs } = this.state;
 
     return (
-      <Container>
-        <Header />
+      <Container className="metting-metter_container effect" maxWidth="sm">
         <Box>
-          <TotalMeetingCost
-            timeInMs={timePassInMs}
-            participantsPerHourlyRate={this.state.countPerHourlyRate}
-          />
-          <Stopwatcher
-            startTime={startTime}
-            timeOnChange={timePass => {
-              this.setState({
-                timePassInMs: timePass
-              });
-            }}
-          />
+          <Header />
+          <Box>
+            <TotalMeetingCost
+              timeInMs={timePassInMs}
+              participantsPerHourlyRate={this.state.countPerHourlyRate}
+            />
+            <Stopwatcher
+              startTime={startTime}
+              timeOnChange={timePass => {
+                this.setState({
+                  timePassInMs: timePass
+                });
+              }}
+            />
+          </Box>
           <ParticipantsList
             participants={participants}
             participantOnChange={this.participantOnChange}
