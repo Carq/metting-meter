@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/metting-meter/precache-manifest.656501c5987900bbc2a5dec7336155af.js"
+  "/metting-meter/precache-manifest.ad52f1d950eb1067b6a94bfa5bd2668f.js"
 );
 
 self.addEventListener('message', (event) => {
