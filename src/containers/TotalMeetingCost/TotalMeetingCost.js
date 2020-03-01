@@ -31,7 +31,8 @@ class TotalMeetingCost extends Component {
     let avgHourlyRate = 0;
 
     for (var hourlyRateKey in participantsPerHourlyRate) {
-      avgHourlyRate += participantsPerHourlyRate[hourlyRateKey] * hourlyRateKey;
+      avgHourlyRate +=
+        (participantsPerHourlyRate[hourlyRateKey] || 0) * (hourlyRateKey || 0);
     }
 
     return ((avgHourlyRate / msInOneHour) * timeInMs).toFixed(2);

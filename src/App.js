@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MettingMeter from "./containers/MettingMeter";
 import Footer from "./containers/Footer";
+import Header from "./containers/Header";
 import history from "./history";
 import { addUrlProps, UrlQueryParamTypes } from "react-url-query";
 
@@ -19,6 +20,7 @@ class App extends Component {
     const { startTime, participants } = this.props;
     return (
       <React.Fragment>
+        <Header />
         <MettingMeter
           startTime={startTime}
           initialParticipants={participants}

@@ -11,8 +11,9 @@ class Stopwatch extends Component {
     if (props.startTime) {
       const parsedDate = this.parseTime(props.startTime);
       if (parsedDate) {
+        this.RaiseStartDateChange(parsedDate);
         this.state = {
-          startTime: parsedDate,
+          startDate: parsedDate,
           isTicking: true
         };
         this.startInterval();
@@ -56,10 +57,11 @@ class Stopwatch extends Component {
     }
 
     this.startInterval();
-
+    const newDate = new Date();
+    this.RaiseStartDateChange(newDate);
     this.setState({
       isTicking: true,
-      startTime: new Date()
+      startDate: newDate
     });
   };
 
@@ -71,9 +73,11 @@ class Stopwatch extends Component {
   };
 
   resetWacher = () => {
+    const newDate = new Date();
+    this.RaiseStartDateChange(newDate);
     this.setState(
       {
-        startTime: new Date()
+        startDate: newDate
       },
       this.calculateTimePass
     );
@@ -98,10 +102,10 @@ class Stopwatch extends Component {
   };
 
   calculateTimePass = () => {
-    const { startTime } = this.state;
+    const { startDate } = this.state;
     const { timeOnChange } = this.props;
 
-    let timePass = new Date() - startTime;
+    let timePass = new Date() - startDate;
     timePass = timePass > 0 ? timePass : 0;
     if (timeOnChange) {
       timeOnChange(timePass);
@@ -133,10 +137,19 @@ class Stopwatch extends Component {
   };
 
   formatToTwoCharsNumber = number => `${number}`.padStart(2, "0");
+
+  RaiseStartDateChange(newDate) {
+    const { startDateOnChange } = this.props;
+
+    if (startDateOnChange) {
+      startDateOnChange(newDate);
+    }
+  }
 }
 
 Stopwatch.propTypes = {
-  timeOnChange: PropTypes.func
+  timeOnChange: PropTypes.func,
+  startDateOnChange: PropTypes.func
 };
 
 export default Stopwatch;

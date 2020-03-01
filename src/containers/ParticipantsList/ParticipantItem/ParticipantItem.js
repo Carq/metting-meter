@@ -22,7 +22,7 @@ class ParticipantItem extends Component {
     this.props.onChange({
       id: id,
       name: name,
-      hourlyRate: parseInt(e.target.value),
+      hourlyRate: parseInt(e.target.value) || 0,
       count: count
     });
   };
@@ -34,7 +34,7 @@ class ParticipantItem extends Component {
       id: id,
       name: name,
       hourlyRate: hourlyRate,
-      count: parseInt(e.target.value)
+      count: parseInt(e.target.value) || 0
     });
   };
 
@@ -61,7 +61,7 @@ class ParticipantItem extends Component {
           type="number"
           value={count}
           onChange={this.countChanged}
-          style={{ margin: "4px", width: "100px" }}
+          style={{ margin: "4px", width: "60px" }}
         />
       </Box>
     );

@@ -3,8 +3,8 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 
 const Header = () => (
-  <Box>
-    <Typography variant="h4" align="center" color="primary">
+  <Box m={1}>
+    <Typography variant="h3" align="center" color="primary">
       Meeting Meter
     </Typography>
   </Box>
