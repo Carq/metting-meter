@@ -61,7 +61,7 @@ class GenerateLink extends Component {
 
 GenerateLink.propTypes = {
   participants: PropTypes.array,
-  startDate: PropTypes.string
+  startDate: PropTypes.instanceOf(Date)
 };
 
 export default GenerateLink;
