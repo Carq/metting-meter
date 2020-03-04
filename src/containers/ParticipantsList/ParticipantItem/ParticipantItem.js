@@ -18,23 +18,25 @@ class ParticipantItem extends Component {
 
   hourlyRateChanged = e => {
     const { id, name, count } = this.props;
+    const newHourlyRate = parseInt(e.target.value) || 0;
 
     this.props.onChange({
       id: id,
       name: name,
-      hourlyRate: parseInt(e.target.value) || 0,
+      hourlyRate: newHourlyRate >= 0 ? newHourlyRate : 0,
       count: count
     });
   };
 
   countChanged = e => {
     const { id, name, hourlyRate } = this.props;
+    const newCount = parseInt(e.target.value) || 0;
 
     this.props.onChange({
       id: id,
       name: name,
       hourlyRate: hourlyRate,
-      count: parseInt(e.target.value) || 0
+      count: newCount >= 0 ? newCount : 0
     });
   };
 
