@@ -14,7 +14,7 @@ class Stopwatch extends Component {
         this.RaiseStartDateChange(parsedDate);
         this.state = {
           startDate: parsedDate,
-          isTicking: true
+          isTicking: true,
         };
         this.startInterval();
       }
@@ -45,7 +45,7 @@ class Stopwatch extends Component {
     <ButtonGroup variant="contained" color="primary">
       <Button onClick={this.startWatcher}>Start</Button>
       <Button onClick={this.stopWatcher}>Stop</Button>
-      <Button onClick={this.resetWacher}>Reset</Button>
+      <Button onClick={this.resetWatcher}>Reset</Button>
     </ButtonGroup>
   );
 
@@ -61,23 +61,23 @@ class Stopwatch extends Component {
     this.RaiseStartDateChange(newDate);
     this.setState({
       isTicking: true,
-      startDate: newDate
+      startDate: newDate,
     });
   };
 
   stopWatcher = () => {
     clearInterval(this.watcherInterval);
     this.setState({
-      isTicking: false
+      isTicking: false,
     });
   };
 
-  resetWacher = () => {
+  resetWatcher = () => {
     const newDate = new Date();
     this.RaiseStartDateChange(newDate);
     this.setState(
       {
-        startDate: newDate
+        startDate: newDate,
       },
       this.calculateTimePass
     );
@@ -87,7 +87,7 @@ class Stopwatch extends Component {
     this.watcherInterval = setInterval(this.calculateTimePass, 100);
   };
 
-  parseTime = time => {
+  parseTime = (time) => {
     const hour = time.split(":")[0];
     const minutes = time.split(":")[1];
     const today = new Date();
@@ -112,16 +112,16 @@ class Stopwatch extends Component {
     }
 
     this.setState({
-      timePass: timePass > 0 ? timePass : 0
+      timePass: timePass > 0 ? timePass : 0,
     });
   };
 
-  convertMsToTime = timeInMs => {
+  convertMsToTime = (timeInMs) => {
     if (!timeInMs) {
       return {
         hours: "00",
         minutes: "00",
-        seconds: "00"
+        seconds: "00",
       };
     }
 
@@ -132,11 +132,11 @@ class Stopwatch extends Component {
       minutes: this.formatToTwoCharsNumber(
         Math.floor((timeInMs / 1000 / 60) % 60)
       ),
-      seconds: this.formatToTwoCharsNumber(Math.floor((timeInMs / 1000) % 60))
+      seconds: this.formatToTwoCharsNumber(Math.floor((timeInMs / 1000) % 60)),
     };
   };
 
-  formatToTwoCharsNumber = number => `${number}`.padStart(2, "0");
+  formatToTwoCharsNumber = (number) => `${number}`.padStart(2, "0");
 
   RaiseStartDateChange(newDate) {
     const { startDateOnChange } = this.props;
@@ -149,7 +149,7 @@ class Stopwatch extends Component {
 
 Stopwatch.propTypes = {
   timeOnChange: PropTypes.func,
-  startDateOnChange: PropTypes.func
+  startDateOnChange: PropTypes.func,
 };
 
 export default Stopwatch;

@@ -1,3 +1,3 @@
-import TotalMeetingCost from "./TotalMeetingCost";
+import TotalMeetingCostHook from "./TotalMeetingCostHook";
 
-export default TotalMeetingCost;
+export default TotalMeetingCostHook;

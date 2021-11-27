@@ -5,7 +5,7 @@ import Box from "@material-ui/core/Box";
 
 class TotalMeetingCost extends Component {
   state = {
-    avgHourlyRate: 0
+    avgHourlyRate: 0,
   };
 
   render() {
@@ -41,7 +41,7 @@ class TotalMeetingCost extends Component {
 
 TotalMeetingCost.propTypes = {
   timeInMs: PropTypes.number,
-  participantsPerHourlyRate: PropTypes.object
+  participantsPerHourlyRate: PropTypes.object,
 };
 
 export default TotalMeetingCost;
