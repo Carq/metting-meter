@@ -20,18 +20,18 @@ class MettingMeter extends Component {
       timePassInMs: 0,
       startTime: props.startTime,
       participants: initialParticipants,
-      countPerHourlyRate: this.calculateCountPerHourlyRate(initialParticipants)
+      countPerHourlyRate: this.calculateCountPerHourlyRate(initialParticipants),
     };
   }
 
-  participantOnChange = changedParticipant => {
-    this.setState(state => {
+  participantOnChange = (changedParticipant) => {
+    this.setState((state) => {
       const list = state.participants.map((item, index) => {
         if (index === changedParticipant.id) {
           return {
             name: changedParticipant.name,
             hourlyRate: changedParticipant.hourlyRate,
-            count: changedParticipant.count
+            count: changedParticipant.count,
           };
         } else {
           return item;
@@ -40,17 +40,17 @@ class MettingMeter extends Component {
 
       return {
         participants: list,
-        countPerHourlyRate: this.calculateCountPerHourlyRate(list)
+        countPerHourlyRate: this.calculateCountPerHourlyRate(list),
       };
     });
   };
 
-  calculateCountPerHourlyRate = participants => {
+  calculateCountPerHourlyRate = (participants) => {
     let countPerHourlyRate = {};
 
     participants &&
       participants.map(
-        participant =>
+        (participant) =>
           (countPerHourlyRate[participant.hourlyRate] =
             participant.count +
             (countPerHourlyRate[participant.hourlyRate] || 0))
@@ -73,9 +73,9 @@ class MettingMeter extends Component {
             <Stopwatcher
               startTime={startTime}
               startDateOnChange={this.startDateOnChange}
-              timeOnChange={timePass => {
+              timeOnChange={(timePass) => {
                 this.setState({
-                  timePassInMs: timePass
+                  timePassInMs: timePass,
                 });
               }}
             />
@@ -83,6 +83,10 @@ class MettingMeter extends Component {
           <ParticipantsList
             participants={participants}
             participantOnChange={this.participantOnChange}
+            onAddParticipant={this.addParticipantSlot}
+            canAddParticipant={participants.length < 10}
+            canRemoveParticipant={participants.length > 1}
+            onRemoveParticipant={this.removeLastParticipantSlot}
           />
           <GenerateLink
             participants={participants}
@@ -93,7 +97,25 @@ class MettingMeter extends Component {
     );
   }
 
-  parseParticipants = participantsToParse => {
+  addParticipantSlot = () => {
+    const { participants } = this.state;
+
+    participants.push({ hourlyRate: 0, count: 0 });
+
+    this.setState(participants);
+  };
+
+  removeLastParticipantSlot = () => {
+    const { participants } = this.state;
+
+    participants.pop();
+    this.setState({
+      participants,
+      countPerHourlyRate: this.calculateCountPerHourlyRate(participants),
+    });
+  };
+
+  parseParticipants = (participantsToParse) => {
     if (!participantsToParse) {
       return new Array(3).fill({ hourlyRate: 0, count: 0 });
     }
@@ -106,22 +128,22 @@ class MettingMeter extends Component {
       participants[arrayIndex++] = {
         name: splited[i],
         hourlyRate: parseInt(splited[i + 1]) || 0,
-        count: parseInt(splited[i + 2]) || 0
+        count: parseInt(splited[i + 2]) || 0,
       };
     }
 
     return participants.fill({ hourlyRate: 0, count: 0 }, arrayIndex, 3);
   };
 
-  startDateOnChange = newStartDate => {
+  startDateOnChange = (newStartDate) => {
     this.setState({
-      startDate: newStartDate
+      startDate: newStartDate,
     });
   };
 }
 
 MettingMeter.propTypes = {
-  startTime: PropTypes.string
+  startTime: PropTypes.string,
 };
 
 export default MettingMeter;
